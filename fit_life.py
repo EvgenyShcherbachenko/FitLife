@@ -3,20 +3,31 @@
 
 # 1. Знакомство
 print("Доброго времени суток! Давайте познакомимся.")
-user_name = input("Введите свое имя: ")
+user_name = input("Введите свое имя: ").strip()
 print("Очень приятно", user_name, sep=", ")
-user_age = int(input("Укажите свой возраст: "))
+try:
+    user_age = int(input("Укажите свой возраст: "))
+except ValueError:
+    print("Ошибка: возраст нужно указать целым числом. Пример: 36")
 
 # 2. Сбор данных
-user_weight = float(input("Укажите свой вес в кг: "))
-user_height = float(input("Укажите свой рост в метрах (пример: 1.77): "))
+try:
+    user_weight = float(input("Укажите свой вес в кг: "))
+except ValueError:
+    print("Ошибка: вес нужно указать числом.")
+
+try:
+    user_height = float(input("Укажите свой рост в метрах (пример: 1.77): "))
+except ValueError:
+    print("Ошибка: рост нужно указать числом и использовать точку")
 print("Отлично! Теперь рассчитаем")
 
-
 # 3. Логика расчетов
+WATER_ML_PER_KG = 30
+ML_IN_LITER = 1000
 bmi = round((user_weight / (user_height ** 2)), 1)
-water_ml = user_weight * 30
-water_l = water_ml / 1000
+water_ml = user_weight * WATER_ML_PER_KG
+water_l = water_ml / ML_IN_LITER
 
 # 4. Вывод красивого результата
 print(f"Отчет для пользователя: {user_name} ({user_age} г.)")
